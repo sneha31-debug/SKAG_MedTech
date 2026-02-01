@@ -369,6 +369,7 @@ class SimulationOrchestrator:
             # Create decision
             decision = EscalationDecision(
                 id=f"DEC-{uuid.uuid4().hex[:8].upper()}",
+                agent_name="RiskMonitor",  # This decision is from the Risk Monitor agent
                 patient_id=patient.id,
                 timestamp=datetime.now(),
                 decision_type=decision_type,

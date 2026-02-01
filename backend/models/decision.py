@@ -111,6 +111,7 @@ class MCDAScore(BaseModel):
 class EscalationDecision(BaseModel):
     """Complete escalation decision with reasoning."""
     id: str = Field(..., description="Unique decision ID")
+    agent_name: str = Field(default="Unknown", description="Name of agent that made this decision")
     patient_id: str = Field(..., description="Patient this decision is for")
     timestamp: datetime = Field(default_factory=datetime.now)
     
@@ -150,6 +151,7 @@ class EscalationDecision(BaseModel):
         """Format for frontend display."""
         return {
             "id": self.id,
+            "agent_name": self.agent_name,
             "patient_id": self.patient_id,
             "timestamp": self.timestamp.isoformat(),
             "decision_type": self.decision_type,

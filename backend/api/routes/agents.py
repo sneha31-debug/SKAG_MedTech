@@ -54,8 +54,33 @@ DEFAULT_AGENTS = [
 @router.get("/status")
 async def get_agents_status() -> List[Dict[str, Any]]:
     """Get status of all AI agents."""
-    # Return agent status list
-    return DEFAULT_AGENTS
+    from backend.core.state_manager import get_state_manager
+    
+    state_manager = get_state_manager()
+    all_decisions = state_manager.get_decisions()
+    
+    # Count decisions per agent
+    agent_decision_counts = {}
+    agent_last_decision_times = {}
+    
+    for decision in all_decisions:
+        agent_name = getattr(decision, 'agent_name', 'Unknown')
+        agent_decision_counts[agent_name] = agent_decision_counts.get(agent_name, 0) + 1
+        
+        # Track last decision time
+        if agent_name not in agent_last_decision_times or decision.timestamp > agent_last_decision_times[agent_name]:
+            agent_last_decision_times[agent_name] = decision.timestamp
+    
+    # Update agent status with actual counts
+    agents_with_counts = []
+    for agent in DEFAULT_AGENTS:
+        agent_copy = agent.copy()
+        agent_name = agent["agent_name"]
+        agent_copy["decision_count"] = agent_decision_counts.get(agent_name, 0)
+        agent_copy["last_decision_time"] = agent_last_decision_times.get(agent_name)
+        agents_with_counts.append(agent_copy)
+    
+    return agents_with_counts
 
 
 @router.get("/list")
