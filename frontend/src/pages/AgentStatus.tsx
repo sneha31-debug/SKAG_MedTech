@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { cn } from '@/lib/utils';
+import { cn } from '../lib/utils';
 import { Bot, Activity, Eye, ArrowRightLeft, AlertTriangle, CheckCircle2, XCircle } from 'lucide-react';
 import { useAgentsStatus } from '@/hooks/useAgents';
 import { formatDateTime } from '@/lib/display-utils';
@@ -227,19 +227,19 @@ export default function AgentStatus() {
               decisionCount={agent.decision_count}
             />
           )) ?? (
-            // Fallback static cards when no data
-            <>
-              {Object.values(agentInfoMap).map((info) => (
-                <AgentCard
-                  key={info.name}
-                  agentName={info.name}
-                  isActive={false}
-                  isRegistered={false}
-                  decisionCount={0}
-                />
-              ))}
-            </>
-          )}
+              // Fallback static cards when no data
+              <>
+                {Object.values(agentInfoMap).map((info) => (
+                  <AgentCard
+                    key={info.name}
+                    agentName={info.name}
+                    isActive={false}
+                    isRegistered={false}
+                    decisionCount={0}
+                  />
+                ))}
+              </>
+            )}
         </div>
       )}
     </div>
