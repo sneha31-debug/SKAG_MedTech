@@ -72,7 +72,7 @@ class Config:
     CORS_ORIGINS: list = [
         "http://localhost:8080",
         "http://127.0.0.1:8080",
-        "https://skag-med-tech.vercel.app"
+        "https://skag-med-tech.vercel.app",
         "*"  # Allow all origins for development
     ]
     
