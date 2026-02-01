@@ -326,12 +326,5 @@ docker-compose up --build
 | **Krish** | Capacity Intelligence, Flow Orchestrator, MCDA , Frontend Dashboard|
 | **Sneha** | Escalation Decision Agent |
 
-## 📚 Learn More
 
-- [FastAPI Documentation](https://fastapi.tiangolo.com/)
-- [Google Gemini API](https://ai.google.dev/docs)
-- [Multi-Criteria Decision Analysis](https://en.wikipedia.org/wiki/Multiple-criteria_decision_analysis)
 
-## 📄 License
-
-MIT License - Feel free to use and modify!
